@@ -1,4 +1,5 @@
 [submodule "libs/hbb_common"]
 	path = libs/hbb_common
 	url = git@github.com:vkmu/hbb_common.git
+	branch = my
 	
