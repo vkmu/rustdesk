@@ -1063,15 +1063,6 @@ fn get_api_server_(api: String, custom: String) -> String {
             return lic.api.clone();
         }
     }
-    // Use custom API server if configured
-    if config::API_SERVER != "" {
-        let server = config::API_SERVER;
-        if server.starts_with("http://") || server.starts_with("https://") {
-            return server.to_string();
-        } else {
-            return format!("http://{}", server);
-        }
-    }
     if !api.is_empty() {
         return api.to_owned();
     }
@@ -1084,7 +1075,7 @@ fn get_api_server_(api: String, custom: String) -> String {
             return format!("http://{}", s);
         }
     }
-    "https://admin.rustdesk.com".to_owned()
+    config::API_SERVER.to_owned()
 }
 
 #[inline]
