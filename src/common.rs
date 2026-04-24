@@ -1065,7 +1065,12 @@ fn get_api_server_(api: String, custom: String) -> String {
     }
     // Use custom API server if configured
     if config::API_SERVER != "" {
-        return config::API_SERVER.to_string();
+        let server = config::API_SERVER;
+        if server.starts_with("http://") || server.starts_with("https://") {
+            return server.to_string();
+        } else {
+            return format!("http://{}", server);
+        }
     }
     if !api.is_empty() {
         return api.to_owned();
