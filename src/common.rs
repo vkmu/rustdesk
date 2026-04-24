@@ -1069,6 +1069,10 @@ fn get_api_server_(api: String, custom: String) -> String {
             return lic.api.clone();
         }
     }
+    // Use custom API server if configured
+    if config::API_SERVER != "" {
+        return config::API_SERVER.to_string();
+    }
     if !api.is_empty() {
         return api.to_owned();
     }
